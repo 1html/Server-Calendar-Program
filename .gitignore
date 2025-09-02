@@ -1,0 +1,7 @@
+# 가상환경/캐시/비밀
+.venv/
+__pycache__/
+*.pyc
+.env
+client_secret.json
+tokens/
