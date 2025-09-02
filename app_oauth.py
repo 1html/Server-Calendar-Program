@@ -69,10 +69,10 @@ def build_service(creds: Credentials):
 
 # 이름→이메일 매핑(테스트용: 실제 주소로 바꿔쓰기)
 NAME_TO_EMAIL = {
-    "alice": "alice_실제이메일@example.com",
-    "bob":   "bob_실제이메일@example.com",
-    "엘리스": "alice_실제이메일@example.com",
-    "밥":     "bob_실제이메일@example.com",
+    "alice": "compass0303@naver.com",
+    "bob":   "kdhcompass0303@gmail.com",
+    "엘리스": "compass0303@naver.com",
+    "밥":     "kdhcompass0303@gmail.com",
 }
 
 def normalize_attendees(items):
