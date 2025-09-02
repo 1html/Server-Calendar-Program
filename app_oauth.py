@@ -10,7 +10,15 @@ from googleapiclient.discovery import build
 
 # ===== 환경설정 =====
 app = Flask(__name__)
-app.secret_key = os.environ.get("APP_SECRET", "dev-secret")  # 배포 시 환경변수로 바꾸세요
+app.secret_key = os.environ.get("APP_SECRET", "dev-secret")
+app.config.update(
+    SESSION_COOKIE_SAMESITE="None",  # 크로스사이트 리다이렉트 허용
+    SESSION_COOKIE_SECURE=True,      # https에서만 쿠키 전송
+)
+
+# ✅ Render 같은 프록시 뒤에서 https/host 인식
+from werkzeug.middleware.proxy_fix import ProxyFix
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 BASE_URL = os.environ.get("BASE_URL", "http://localhost:5000")  # 배포 시 https://도메인 으로 설정
 
 # 로컬 http 개발 시 OAuth 에러 방지 (배포에서는 제외)
