@@ -94,8 +94,8 @@ KST = timezone(timedelta(hours=9))
 # ─────────────────────────────
 # OpenAI (자연어 → JSON)
 # ─────────────────────────────
-import openai
-openai.api_key = os.environ.get("OPENAI_API_KEY")
+from openai import OpenAI
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 def nlp_to_event_json(user_text: str) -> dict:
     """자연어 문장을 이벤트 JSON으로 변환 (오류 보강)"""
@@ -113,12 +113,12 @@ def nlp_to_event_json(user_text: str) -> dict:
 
     # 1) OpenAI 호출
     try:
-        resp = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0,
+        resp = client.chat.completions.create(
+        model="gpt-4o-mini",   # 비용/속도 좋은 최신 소형 모델 예시
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
         )
-        content = resp.choices[0].message["content"]
+        content = resp.choices[0].message.content
     except Exception as e:
         return {"error": f"OpenAI API 호출 실패: {str(e)}"}
 
