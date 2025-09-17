@@ -69,10 +69,10 @@ def build_service(creds: Credentials):
 
 # 이름→이메일 매핑 (하드코딩 버전)
 NAME_TO_EMAIL = {
-    "alice": "alice_실제이메일@example.com",
-    "bob":   "bob_실제이메일@example.com",
-    "엘리스": "alice_실제이메일@example.com",
-    "밥":     "bob_실제이메일@example.com",
+    "alice": "compass0303@naver.com",
+    "bob":   "kdwcompass33@gmail.com",
+    "엘리스": "compass0303@naver.com",
+    "밥":     "kdwcompass33@gmail.com",
 }
 
 def normalize_attendees(items):
